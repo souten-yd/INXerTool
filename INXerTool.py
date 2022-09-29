@@ -29,7 +29,7 @@ def getINXTokenPrice():
     url = "https://www.inx.co/inx-token/"
     soup = getSoup(url)
     targetElement = soup.find("div",class_="elementor-element elementor-element-907dbcc elementor-widget__width-auto elementor-widget elementor-widget-text-editor")
-    INXTokenValue = (targetElement.find("div").text).strip("\n $")
+    INXTokenValue = (targetElement.find("div").text).strip().strip("$")
     return float(INXTokenValue)
 
 def getINXTokenHolder():
@@ -60,7 +60,7 @@ if ShowStockPrice:
     INXStockPrice = getStockPrice("INXDF")
     INXStockJPY = USDJPY * INXStockPrice
 
-INXTokenSum = int(INXTokenJPY * INXTokenHoldCount)
+INXTokenSum = int(INXTokenJPY *INXTokenHoldCount)
 
 if ShowStockPrice:
     mes = "INXStock: $" + str(round(INXStockPrice,3)) + ", ¥" + str(round(INXStockJPY,1))
